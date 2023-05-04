@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewpo5rt" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		html {
+			width: 100%;
+			height: 100%;
+			background: silver;
+		}
+
+		header {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+
+		}
+
+		header nav{
+			background: rgba(0, 0, 0, .20);
+			width: 100%;
+			height: 100px;
+			line-height: 100px;
+			text-align: right;
+			position: relative;
+			right: 0;
+		}
+		nav ul{
+			right: 40px;
+			position: relative;
+
+		}
+
+		nav ul li{
+			list-style: none;
+			display: inline-block;
+			margin-left: 60px;
+
+		}
+
+		nav ul li a{
+			text-decoration: none;
+			color: #fff;
+			font-size: 24px;
+			font-weight: 500;
+			font-family: sans-serif;
+		}
+
+		ul li a:hover{
+			color: #fff;
+			box-shadow: 0px 0px 20px #fff;
+			padding: 15px 20px;
+			border: 2px solid #fff;
+			font-size: 30px;
+			border-radius: 25px;
+		}
+
+		header video {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 100%;
+			opacity: 0.8;
+			z-index: -1; 
+		}
+
+		header #content{
+			position: absolute;
+			left: 50%;
+			top: 30%;
+			text-align: center;
+			transform: translate(-50%, 50%);
+			font-size: 30px;
+			font-weight: 600;
+			color: #FFF;
+		}
+		#content a{
+			text-decoration: none;
+			color: silver;
+			padding: 8px 16px;
+			border: 2px solid #fff;
+			border-radius: 25px;
+			top: 10px; 
+
+		}
+		#content a:hover{
+			color: #fff;
+			box-shadow: 0px 0px 20px #fff;
+		}
+
+
+		#content h1{
+			position: relative;
+			margin-bottom:20px;
+		}
+	</style>
+
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/homepage">home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">contact</a></li>
+				<li><a href="/adminlogin">Admin</a></li>
+				
+			</ul>
+		</nav>
+		<video autoplay muted loop plays-inline>
+  			<source src="{% static 'videos/pexels-pavel-danilyuk-6764517.mp4' %}" type="video/mp4">
+  		
+		</video>
+		<div id="content">
+			<h1>Online Flower Shop</h1>
+			<a href="/homepage">Buy now</a>
+		</div>
+	</header>
+{% block content %}
+
+{% endblock content %}
+</body>
+</html>

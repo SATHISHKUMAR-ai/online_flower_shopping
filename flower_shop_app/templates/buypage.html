@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title></title>
+  <style type="text/css">
+    body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFDEAD;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #C4A484;
+  margin-right: 0px;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+    
+form{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    margin-top: 5%;
+}
+
+     .items {
+    display: flex;
+    height: 430px;
+    border-bottom: 2px solid silver;
+    margin: 0px 80px 60px 80px;
+}
+
+.items img {
+    margin: 1% 1% 1% 4%;
+    border-radius: 10px;
+    width: 220px;
+    height: 200px;
+}
+
+.items .details {
+    margin:1% 5%;
+}
+
+.details h2 {
+    letter-spacing: 2px;
+}
+
+.details .box {
+    width: 20px;
+    height: 20px;
+    margin-top: 1%;
+    background: transparent;
+    border: 2px solid green;
+    position: relative;
+    left: 5px;
+}
+
+.box i {
+    width: 5px;
+    color: green;
+    position: absolute;
+    left: 1px;
+}
+
+.details .box-1 {
+    width: 20px;
+    height: 20px;
+    margin-top: 1%;
+    background: transparent;
+    border: 2px solid brown;
+    position: relative;
+    left: 5px;
+}
+
+.box-1 i {
+    width: 5px;
+    color: brown;
+    position: absolute;
+    left: 1px;
+}
+
+.details p {
+    margin: 4% 0% 2% 0%;
+    color: #adadad;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.items .price-order {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-order a {
+    text-decoration: none;
+    color: white;
+    margin-top: 30px;
+    background-color:#FFDEAD ;
+    color: black;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.price-order a:hover {
+    background: #DEB887;
+    transition: .5s;
+
+}
+ 
+ button{
+    text-decoration: none;
+    margin-left: 100px;
+    background-color:#FFDEAD;
+    border: none;
+    padding: 8px 16px;
+    height: 16%;
+    border-radius: 20px;
+    margin-top: 5%;
+    transition: .5s; 
+ }
+button:hover {
+    background: #DEB887;
+    transition: .5s;
+
+}
+      
+     
+  </style>
+</head>
+<body>
+  
+ <div class="topnav" id="myTopnav">
+  <a href="/customerlogout">Logout</a>
+  <a href="/yourfeedback/{{ user.id }}">Feedback</a>
+  <a href="#contact">Menu</a>
+  <a href="/cartpage">Cart</a>
+  <a href="/yourorder">Your Order</a>
+  <a href="/customertable" class="active">Home</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+  <div class="items">
+     <form method="POST" action="/orderstore/{{ user.id }}" enctype="multipart/form-data">
+       <input type="hidden" name="id" id="id" value="{{ user.id }}"></input>
+      {% csrf_token %}
+        <a href=""><img  src="{{ user.flower_image.url }}"></a>
+        <div class="details">
+            <h2>description</h2>
+            <p> Product id: {{ user.flower_id }} </p>
+            <p>Flower name: {{ user.flower_name }} </p>
+            <p>Flower category:{{ user.flower_category }} </p>
+             <p id="amount" name="price">Flower price: {{ user.flower_price }} </p>
+            Address:<input type="text" name="address" style="width:50%; height: 10%;" required><br><br>
+            <!-- <input type="text" name="username" value="{{ user1.user_name }}"  > -->
+            phone no:<input type="tel" name="phone" max="10" required><br><br>
+            <input type="hidden" name="image" value="{{ user.flower_image }}">
+            <input type="hidden" name="id" value="{{ user.flower_id }}">
+            <input type="hidden" name="name" value="{{ user.flower_name }}">
+            <input type="hidden" name="category" value="{{ user.flower_category }}">
+            <input type="hidden" name="price"value="{{ user.flower_price }}">
+            
+
+            <div class="price-order">
+                <!-- <h4 id="total" value="total" ><i class="fa fa-rupee"></i></h4> -->
+
+                <a href="#" onclick="add()">+</a>
+                <input type="number" name="qty" id="qty" class="num" value="1" min="1" max="100"></input>
+                <a href="#" onclick="sub();">-</a><br><br><br>
+
+                <input type="text" id="total"  name="total" value="{{ user.flower_price }}">
+                
+                <button type="submit" >Buy now</button>&ensp;&ensp;&ensp;&ensp;
+                </form>
+            </div>
+        </div><form method="POST" action="/cartstore/{{ user.id }}" enctype="multipart/form-data">
+       <input type="hidden" name="id" id="id" value="{{ user.id }}"></input>
+       {% csrf_token %}
+         <input type="hidden" name="image" value="{{ user.flower_image }}">
+         <input type="hidden" name="id" value="{{ user.flower_id }}">
+         <input type="hidden" name="name" value="{{ user.flower_name }}">
+         <input type="hidden" name="category" value="{{ user.flower_category }}">
+         <input type="hidden" name="price"value="{{ user.flower_price }}">
+         <input hidden type="number" name="qty" id="qty1" class="num" value="1" min="1" max="100"></input>
+         <input hidden type="text" id="total1"  name="total" value="{{ user.flower_price }}">
+         <button type="submit" style="margin-top:98%;height:40px">Go to cart </button>
+    </form>
+        </div>
+        
+      
+    </div>
+    
+<script type="text/javascript">
+  function add() {
+    document.getElementById("qty").stepUp();
+    document.getElementById("qty1").stepUp();
+    var a=  "{{ user.flower_price }}"
+    var b= document.getElementById("qty").value;
+    var c= document.getElementById("total");
+    var d= document.getElementById("qty1").value;
+    var e= document.getElementById("total1");
+    c.value="RS." + a*b;
+    e.value="RS." + a*d;
+  }
+
+  function sub() {
+    document.getElementById("qty").stepDown();
+    document.getElementById("qty1").stepDown();
+    var a=  "{{ user.flower_price }}"
+    var b= document.getElementById("qty").value;
+    var c= document.getElementById("total").value="RS." + a*b;
+    var d= document.getElementById("qty1").value;
+    var e= document.getElementById("total1").value="RS." + a*d;
+  }
+
+</script>
+</body>
+</html>
