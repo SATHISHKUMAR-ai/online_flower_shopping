@@ -12,6 +12,7 @@ Django
 Python 
 
 
+
 ![Screenshot (13)](https://user-images.githubusercontent.com/132100837/236602146-d11081ad-6286-433e-a107-f2cc3108c379.png)
 ![Screenshot (14)](https://user-images.githubusercontent.com/132100837/236602168-5e39023d-764e-4e55-a7ae-9b0f7891f37c.png)
 ![Screenshot (15)](https://user-images.githubusercontent.com/132100837/236602171-27f8531e-8ac4-4a10-8998-836e7a2a2fbe.png)
